@@ -255,10 +255,15 @@
         public static void CatTask()
         {
             var cat = new Cat();
+
             Console.WriteLine($"The fullness level of a cat is {cat.FullnessLevel}");
+
             cat.EatSomething(Food.Mouse);
+
             Console.WriteLine($"The fullness level of a cat is {cat.FullnessLevel}");
+
             cat.EatSomething(Food.Meat);
+
             Console.WriteLine($"The fullness level of a cat is {cat.FullnessLevel}");
 
             Console.ReadLine();
@@ -294,7 +299,7 @@
             //string brackets = "((()))";
             //string brackets = "(((())";
             string brackets = "()()";
-            bool isValid = true;
+            bool isBalanced = true;
             var stack = new Stack<char>();
             foreach (char bracket in brackets)
             {
@@ -302,11 +307,11 @@
                 {
                     stack.Push(bracket);
                 }
-                else
+                else // close bracket
                 {
                     if (stack.Count == 0)
                     {
-                        isValid = false;
+                        isBalanced = false;
                         break;
                     }
 
@@ -314,9 +319,9 @@
                 }
             }
 
-            if (stack.Count != 0) isValid = false;
+            if (stack.Count != 0) isBalanced = false;
 
-            Console.WriteLine($"Brackets expression is valid: {isValid}");
+            Console.WriteLine($"Brackets expression is balanced: {isBalanced}");
 
         }
     }
