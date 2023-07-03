@@ -9,16 +9,14 @@
             // Task3();
             // Task4();
             // Task5();
-            // Task6();
-            // Task7();
-            // Task8();
-            // Task9();
+            // Homework1();
+            // Homework2();
+            // Homework3();
+            // Homework4();
             //CatTask();
             //StudentTask();
             BracketsTask();
-
         }
-
 
         /// <summary>
         ///Enter two integers numbers and check if they can represent the day and month. 
@@ -26,37 +24,26 @@
         /// </summary>
         public static void Task1()
         {
-            int month, day;
-
-            Console.Write("Enter month num: ");
-            var inputMonth = Console.ReadLine();
-
-            var parsedMonth = int.TryParse(inputMonth, out month);
-
-            if (!parsedMonth)
+            if (!Helpers.PromptWithValidationInt("Enter month number: ", "Can't parse month number", out int month))
             {
-                Console.WriteLine("Can't parse month number");
                 return;
             }
 
-            if (month < 1 || month > 12)
+            const int january = 1;
+            const int december = 12;
+
+            if (month < january || month > december)
             {
                 Console.WriteLine("You have entered invalid month number");
                 return;
             }
 
-            Console.Write("Enter day num: ");
-            var inputDay = Console.ReadLine();
-
-            var parsedDay = int.TryParse(inputDay, out day);
-
-            if (!parsedDay)
+            if (!Helpers.PromptWithValidationInt("Enter day number: ", "Can't parse day number", out int day))
             {
-                Console.WriteLine("Can't parse day number");
                 return;
             }
 
-            var daysAmount = DateTime.DaysInMonth(2023, month);
+            var daysAmount = DateTime.DaysInMonth(DateTime.Now.Year, month);
 
             if (day < 1 || day > daysAmount)
             {
@@ -64,6 +51,7 @@
                 return;
 
             }
+
             Console.WriteLine("Successfully entered date");
 
             Console.ReadLine();
@@ -75,11 +63,9 @@
         /// </summary>
         public static void Task2()
         {
-            double num;
-            Console.Write("Enter double number: ");
-            var inputNum = Console.ReadLine();
+            var inputNum = Helpers.Prompt("Enter double number: ");
 
-            var parsedNum = double.TryParse(inputNum, out num);
+            var parsedNum = double.TryParse(inputNum, out double num);
 
             if (!parsedNum)
             {
@@ -104,35 +90,33 @@
         /// </summary>
         public static void Task3()
         {
-            int hour;
-
-            Console.Write("Enter hour of the day in 24h format: ");
-            var inputHour = Console.ReadLine();
-
-            var parsedHour = int.TryParse(inputHour, out hour);
-
-            if (!parsedHour)
+            if (!Helpers.PromptWithValidationInt("Enter hour of the day in 24h format: ", "Can't parse hour of the day", out int hour))
             {
-                Console.WriteLine("Can't parse hour of the day");
                 return;
             }
 
-            if (hour < 0 || hour > 23)
+            const int startDay = 0;
+            const int endDay = 23;
+            if (hour < startDay || hour > endDay)
             {
                 Console.WriteLine("You entered invalid hour");
                 return;
             }
 
             string message;
-            if (hour >= 5 & hour < 12)
+            const int morning = 5;
+            const int afternoon = 12;
+            const int evening = 17;
+            const int night = 21;
+            if (hour >= morning & hour < afternoon)
             {
                 message = "Good morning!";
             }
-            else if (hour >= 12 & hour < 17)
+            else if (hour >= afternoon & hour < evening)
             {
                 message = "Good afternoon!";
             }
-            else if (hour >= 17 & hour < 21)
+            else if (hour >= evening & hour < night)
             {
                 message = "Good evening!";
             }
@@ -164,25 +148,31 @@
         /// </summary>
         public static void Task5()
         {
-            var white = new RGB();
+            var white = new RGB
+            {
+                R = 0xFF,
+                G = 255,
+                B = 255
+            };
+
             RGB black = new RGB();
-            white.R = 0xFF;
-            white.G = 255;
-            white.B = 255;
         }
 
         /// <summary>
         /// Read 3 float numbers and check if they are all in the range [-5;5].
         /// </summary>
-        public static void Task6()
+        public static void Homework1()
         {
             float a = -20f;
             float b = 0f;
             float c = 4f;
 
-            if (a >= -5 && a <= 5
-                && b >= -5 && b <= 5
-                && c >= -5 && c <= 5)
+            const float lowerBoundary = -5f;
+            const float upperBoundary = 5f;
+
+            if (a >= lowerBoundary && a <= upperBoundary
+                && b >= lowerBoundary && b <= upperBoundary
+                && c >= lowerBoundary && c <= upperBoundary)
             {
                 Console.WriteLine("All 3 values are in range [-5;5]");
             }
@@ -196,7 +186,7 @@
         /// <summary>
         /// Read 3 integer numbers and output max and min of them.
         /// </summary>
-        public static void Task7()
+        public static void THomework2()
         {
             int a = -20;
             int b = 0;
@@ -211,16 +201,13 @@
             Console.WriteLine($"Min value is: {min}; Max value is: {max}");
 
             Console.ReadLine();
-
-            var minAnother = Math.Min(Math.Min(a, b), c);
-            var maxAnother = Math.Max(Math.Max(a, b), c);
         }
 
         /// <summary>
         /// Read number of HTTP Error (400, 401,402, ...) and write the name of this error 
         ///(Declare enum HTTPError)
         /// </summary>
-        public static void Task8()
+        public static void Homework3()
         {
             int code = 403; // forbidden
             HttpError enumCode = (HttpError)code;
@@ -235,12 +222,14 @@
         ///Declare object myDog of Dog type and read values for it.
         ///Output information on the console. (Override method ToString in struct)
         /// </summary>
-        public static void Task9()
+        public static void Homework4()
         {
-            var myDog = new Dog();
-            myDog.Name = "Zuzik";
-            myDog.Mark = "Street Fighter";
-            myDog.Age = 15;
+            var myDog = new Dog
+            {
+                Name = "Zuzik",
+                Mark = "Street Fighter",
+                Age = 15
+            };
 
             Console.WriteLine(myDog);
 
@@ -277,13 +266,14 @@
         /// </summary>
         public static void StudentTask()
         {
-            Student[] students = new Student[5];
-
-            students[0] = new Student() { GroupNumber = 3, LastName = "Yatsiuk" };
-            students[1] = new Student() { GroupNumber = 2, LastName = "Yaroslav" };
-            students[2] = new Student() { GroupNumber = 3, LastName = "Yuzyk" };
-            students[3] = new Student() { GroupNumber = 2, LastName = "Dobrynin" };
-            students[4] = new Student() { GroupNumber = 3, LastName = "Tishchenko" };
+            Student[] students = new Student[5]
+            {
+                new Student() { GroupNumber = 3, LastName = "Yatsiuk" },
+                new Student() { GroupNumber = 2, LastName = "Yaroslav" },
+                new Student() { GroupNumber = 3, LastName = "Yuzyk" },
+                new Student() { GroupNumber = 2, LastName = "Dobrynin" },
+                new Student() { GroupNumber = 3, LastName = "Tishchenko" }
+            };
 
             var searchResult = students.Where(student => student.GroupNumber == 3 && student.LastName.StartsWith("Y"));
 
@@ -299,6 +289,7 @@
             //string brackets = "((()))";
             //string brackets = "(((())";
             string brackets = "()()";
+
             bool isBalanced = true;
             var stack = new Stack<char>();
             foreach (char bracket in brackets)
@@ -322,7 +313,6 @@
             if (stack.Count != 0) isBalanced = false;
 
             Console.WriteLine($"Brackets expression is balanced: {isBalanced}");
-
         }
     }
 }
