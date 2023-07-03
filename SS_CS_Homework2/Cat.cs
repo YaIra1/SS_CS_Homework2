@@ -6,7 +6,7 @@
 
         public void EatSomething(Food food)
         {
-            FullnessLevel = FullnessLevel + (int)food;
+            FullnessLevel += (int)food;
         }
     }
 }
