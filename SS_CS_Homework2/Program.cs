@@ -186,7 +186,7 @@
         /// <summary>
         /// Read 3 integer numbers and output max and min of them.
         /// </summary>
-        public static void THomework2()
+        public static void Homework2()
         {
             int a = -20;
             int b = 0;
